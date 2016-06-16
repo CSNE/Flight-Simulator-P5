@@ -18,11 +18,16 @@ boolean turbo = false;
 Wing wings;
 float weight;
 
+PVector originalPosition, originalHeading;
+
 public Airplane(PVector position, PVector heading, Wing wings, float weight){
     this.position = position;
     this.heading = heading;
     this.wings = wings;
     this.weight = weight;
+    
+    this.originalPosition=position.copy();
+    this.originalHeading=heading.copy();
 }
 
 public void turbo(boolean b){
@@ -35,7 +40,7 @@ public PVector calculateThrust(){
     return heading.copy().setMag(thrust);
 }
 public PVector wingNormal(){
-    logger(this, perpendicularVector(heading, rotation));
+    //logger(this, perpendicularVector(heading, rotation));
     return perpendicularVector(heading, rotation);
 }
 public PVector wingParallel(){
@@ -130,14 +135,21 @@ public void update(PGraphics p, int iterations, float timeFactor, Terrain t){
     }
 
     position.add(velocity.copy().mult(timeFactor));
-
+    
     if (position.y > 0) {
+      //logger(this,"collision with ground",velocity);
+      if ((velocity.y) > 10) {
+          logger(this,"Fatal collision.",velocity);
+          dead=60;
+          reset();
+        }
         position.y = 0;
         velocity.y = 0;
-        if (velocity.y > 10) reset();
+        
     }
+    
 
-    logger(this, position);
+    //logger(this, position);
 
     p.pointLight(255, 255, 255, position.x, position.y, position.z);
 
@@ -257,7 +269,10 @@ public HudDataSource getSpeedSource(){
 }
 // Utility
 public void reset(){
-    this.position.mult(0);
+    this.position=this.originalPosition;
+    this.heading=originalHeading;
+    this.rotation=0;
     this.velocity.mult(0);
+    this.thrust=0;
 }
 }

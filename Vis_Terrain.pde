@@ -3,9 +3,9 @@ Airplane ap;
 public Terrain(Airplane ap){
     this.ap = ap;
 }
-int numCubes = 10; // times two.
-float cubeSpacing = 1000;
-float cubeSize = 30;
+int numCubes = 20; // times two.
+float cubeSpacing = 200;
+float cubeSize = 10;
 float groundOffset = 50;
 public void drawTerrain(PGraphics pg){
     float x = ap.getLocation().x;

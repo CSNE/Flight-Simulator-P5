@@ -33,8 +33,8 @@ public static Graph testLiftGraph(){
 
     res.addVertex(radians(-30), -0.03);
     res.addVertex(radians(-10), 0);
-    res.addVertex(radians(20), 0.01);
-    res.addVertex(radians(40), 0.005);
+    res.addVertex(radians(20), 0.007);
+    res.addVertex(radians(40), 0.003);
     res.addVertex(radians(90), 0);
     return res;
 
