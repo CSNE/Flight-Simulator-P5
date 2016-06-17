@@ -4,9 +4,12 @@ public Terrain(Airplane ap){
     this.ap = ap;
 }
 int numCubes = 20; // times two.
-float cubeSpacing = 200;
+static float cubeSpacing = 200;
 float cubeSize = 10;
-float groundOffset = 50;
+float groundOffset = 0;
+public static PVector getCenterPoint(){
+return new PVector(cubeSpacing/2,0,cubeSpacing/2);
+}
 public void drawTerrain(PGraphics pg){
     float x = ap.getLocation().x;
     float z = ap.getLocation().z;

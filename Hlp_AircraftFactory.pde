@@ -1,7 +1,7 @@
 static class AircraftFactory {
 
 public static Airplane testAirplane(){
-    Airplane res = new Airplane(new PVector(0, 0, 0), new PVector(1, 0, -1).normalize(), testWing(), 15);
+    Airplane res = new Airplane(Terrain.getCenterPoint(), new PVector(0, 0, -1).normalize(), testWing(), 15);
 
     return res;
 }
